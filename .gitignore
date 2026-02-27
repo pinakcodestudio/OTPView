@@ -1,0 +1,31 @@
+# ── Gradle build outputs ─────────────────────────────────────────────────────
+.gradle/
+build/
+
+# ── Generated artifacts (never commit AAR/APK — they are build outputs) ──────
+*.aar
+*.apk
+
+# ── Local environment files (machine-specific, must never be committed) ───────
+local.properties
+
+# ── IDE files ─────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+
+# ── OS-generated files ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Kotlin compiler artifacts ─────────────────────────────────────────────────
+*.kotlin_module
+
+# ── Signing keystores (NEVER commit your keystore or signing credentials) ─────
+*.jks
+*.keystore
+keystore.properties
+
+# NOTE: gradlew, gradlew.bat, and gradle/wrapper/gradle-wrapper.jar are
+# intentionally NOT excluded. These MUST be committed so that CI systems
+# (GitHub Actions, JitPack) can build the project without requiring a
+# local Gradle installation.
