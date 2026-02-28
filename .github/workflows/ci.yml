@@ -2,14 +2,15 @@ name: CI
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
     name: Build Library & Run Tests
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -18,20 +19,18 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build release AAR
-        run: ./gradlew :otpview:assembleRelease --no-daemon
+        run: ./gradlew :otpview:assembleRelease
 
       - name: Run unit tests
-        run: ./gradlew :otpview:test --no-daemon
+        run: ./gradlew :otpview:test
 
       - name: Upload AAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: otpview-${{ github.sha }}.aar
+          name: otpview-release
           path: otpview/build/outputs/aar/otpview-release.aar
-          retention-days: 30
